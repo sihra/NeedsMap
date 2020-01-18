@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+Register an account
+{% endblock %}
+{% block content %}
+<form action="/register" method="post">
+    Username: <input type="text" name="username" required>
+    Password: <input type="password" name="password" required>
+    <input type="submit">
+</form>
+{% endblock %}

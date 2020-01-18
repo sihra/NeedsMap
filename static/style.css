@@ -1,0 +1,20 @@
+.poster {
+  text-align: center;
+  width: 500px;
+}
+
+.catpic {
+  width: 500px;
+  display: block;
+}
+
+.quote {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: xx-large;
+  width: 500px;
+}
+
+li {
+  list-style-type: none;
+}

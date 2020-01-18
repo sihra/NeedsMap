@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+Favorites
+{% endblock %}
+{% block content %}
+{% if session.username %}
+{% for favorite in favorites %}
+<div class="poster">
+    <img class="catpic" src="{{ favorite.picture_url }}" alt="Random cat">
+    <div class="quote">{{ favorite.quote }}</div>
+</div>
+{% endfor %}
+{% else %}
+<span><a href="/login">Log in</a> to start saving favorites!</span>
+{% endif%}
+{% endblock %}
