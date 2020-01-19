@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    pwd = db.Column(db.String(80), nullable=False)
     favorites = db.relationship('Favorite', backref='user', lazy=True)
 
 
@@ -44,6 +44,42 @@ def get_quote():
 def index():
     return render_template('index.html', url=get_cat_picture(), quote=get_quote())
 
+@app.route('/form',methods=['GET','POST'])
+def save_form():
+    if request.method == 'POST':
+        # name= request.form.get('name')
+        # if name == None:
+        #     flash('Name field is empty! Please provide a valid shelter name')
+        # else:
+        #     #check if shelter manager has access to this shelter 
+        # location = request.form.get('location')
+        # if location == None:
+        #     flash('Location field is empty! Please provide a valid shelter location') 
+        # else:
+        #     #check if shelter manager has access to this location  
+        
+        resource=request.form.get('resource')
+        if(resource == "--None--" )
+           flash('Please select a valid resource!')
+           return redirect(url_for('form'))
+        alert_number =request.form.get('alert')
+        if(alert_number == "--None--" )
+           flash('Please select a valid priority number!')
+           return redirect(url_for('form'))
+        #update db here - can the db updation be synced and recorded????
+        flash("You have successfully submitted the details! Please logout if you don't have any more updates or you can continue updating the form")
+        return redirect(url_for('form'))
+
+    else:
+        def dropdown():
+            #fetch name from db and store it in name
+
+            #fetch location from db and store it in location
+
+            resources = ['--None--','Food', 'Toiletries', 'Clothes', 'Shoes','Feminine Supplies','Monetary Donations']
+            alerts = ['--None--','0','1','2','3','4']
+            return render_template('form.html', name = name,location = location,resources=resources,alerts = alerts)
+        
 
 @app.route('/save-favorite', methods=['POST'])
 def save_favorite():
@@ -97,9 +133,13 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        location = request.form.get('location')
+        name = request.form.get('name')
+
         user_doesnt_exist = User.query.filter_by(username=username).first() is None
+        #location does not exist,name does not exist
         if username and password and user_doesnt_exist:
-            user = User(username=username, password=generate_password_hash(password))
+            user = User(username=username, pwd=generate_password_hash(password),address_id= location,name=name)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('login'))

@@ -4,8 +4,11 @@ Register an account
 {% endblock %}
 {% block content %}
 <form action="/register" method="post">
-    Username: <input type="text" name="username" required>
-    Password: <input type="password" name="password" required>
+    Username        : <input type="text" name="username" required>
+    Password        : <input type="password" name="password" required>
+    Shelter Location: <input type="text" name="location" required>
+    Shelter Name    : <input type="text" name="name" required>
+    
     <input type="submit">
 </form>
 {% endblock %}
