@@ -1,55 +1,36 @@
-<!-- Form page -->
 
-<!-- {% extends "base.html" %}
+{% extends "base.html" %}
 {% block title %}
-Random Cat Posters
+Enter the resource details below
 {% endblock %}
 {% block content %}
 {% if session.username %}
-<form action="/save-favorite" method="post">
-    <input type="hidden" name="url" value="{{ url }}">
-    <input type="hidden" name="quote" value="{{ quote }}">
-    <button type="submit">Save to favorites</button>
-</form>
-{% endif %}
-<form action="/" method="get">
-    <button type="submit">Get another</button>
-</form>
-<div class="poster">
-    <img class="catpic" src="{{ url }}" alt="Random cat">
-    <div class="quote">{{ quote }}</div>
-</div>
-{% endblock %} -->
-
-!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Enter the form details</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
-<body>
+<div id="form_container">
     <form action="/form" method="post">
-        Name: {{name}}
-        Location: {{location}} 
-        
-        <select name="resource" method="GET" action="/form">
-            <option value="{{resources[0]}}" selected>{{resources[0]}}</option>
-            {% for resource in resources[1:] %}
-              <option value="{{resource}}">{{resource}}</option>
-            {% endfor %}
-        </select>
+            <p style="font-weight: bold">Name: {{name}} </p>
+            <p style="font-weight: bold">Location: {{location}} </p>
+            <p style="font-weight: bold">Resource:
+            <select name="resource" method="GET" action="/form">
+                <option value="{{resources[0]}}" selected>{{resources[0]}}</option>
+                {% for resource in resources[1:] %}
+                <option value="{{resource}}">{{resource}}</option>
+                {% endfor %}
+            </select>
+            </p>
+            <p style="font-weight: bold">
+            Priority:
+            <select name="alert" method="GET" action="/form">
+                <option value="{{alerts[0]}}" selected>{{alerts[0]}}</option>
+                {% for alert in alerts[1:] %}
+                <option value="{{alert}}">{{alert}}</option>
+                {% endfor %}
+            </select>
+            </p>
 
-        <select name="alert" method="GET" action="/form">
-            <option value="{{alerts[0]}}" selected>{{alerts[0]}}</option>
-            {% for alert in alerts[1:] %}
-              <option value="{{alert}}">{{alert}}</option>
-            {% endfor %}
-        </select>
-        
-        <input type="submit">
+            <input type="submit" style="background-color: #4CAF50;">
     </form>
-</body>
-</html>
+</div>
+{% endif %}
+{% endblock %}
 
 

@@ -1,18 +1,18 @@
-.poster {
-  text-align: center;
-  width: 500px;
+#form_container{
+  margin: 0 auto;
+  text-align:center;
+  background-color:yellowgreen;
+  width: 100vw;
+  height: 100vh;
+  
 }
 
-.catpic {
-  width: 500px;
-  display: block;
+.error{
+  color:red;
 }
 
-.quote {
-  background-color: #000000;
-  color: #ffffff;
-  font-size: xx-large;
-  width: 500px;
+.info{
+  color:yellow;
 }
 
 li {

@@ -1,39 +1,35 @@
-<!-- {% extends "base.html" %}
-{% block title %}
-Random Cat Posters
-{% endblock %}
-{% block content %}
-{% if session.username %}
-<form action="/save-favorite" method="post">
-    <input type="hidden" name="url" value="{{ url }}">
-    <input type="hidden" name="quote" value="{{ quote }}">
-    <button type="submit">Save to favorites</button>
-</form>
-{% endif %}
-<form action="/" method="get">
-    <button type="submit">Get another</button>
-</form>
-<div class="poster">
-    <img class="catpic" src="{{ url }}" alt="Random cat">
-    <div class="quote">{{ quote }}</div>
-</div>
-{% endblock %} -->
-
-
-
-<!DOCTYPE html>
-    <html>
+<!-- <!DOCTYPE html> -->
+<html>
     <head>
 
-                 
+        <!-- <script type=text/javascript> $(function() { $("#register").click(function (event) { $.getJSON('/gotoregister', { },
+            function(data) { }); return false; }); }); 
+        </script>
+        <script type=text/javascript> $(function() { $("#login").click(function (event) { $.getJSON('/gotologin', { },
+            function(data) { }); return false; }); }); 
+        </script>        -->
     </head>
     <body>
         <h1>Flask Google Maps Example</h1>
+        <!-- <div>
+            <form action="/register" method="post" >   
+                <input type="button" id="register" value="Register as a shelter manager" style="float: right;">
+            
+        </div>
+        <div>
+            
+                <input type="button" id="login" value="Login as a shelter manager" style="float: right;">
+           
+        </div> -->
+        <p><a href="{{ url_for('register') }}">Register as a shelter manager</a></p>
+        <p><a href="{{ url_for('login') }}">Login as a shelter manager</a></p>
 
         <h2> First map generated in view</h2>
+        
+            {{mymap.js}} 
+            {{mymap.html}}
 
-         {{mymap.js}} 
-         {{mymap.html}}
-
+        
+        
     </body>
 </html>
