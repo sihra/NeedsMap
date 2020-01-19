@@ -30,19 +30,20 @@
                 color:white;
             }
 
-            .starter-template {
-                z-index: 1;
-                /* display: none; */
-                position: absolute;
-                top: 20;
+            .start {
+                
+                top: 120;
                 width: 100%;
+                margin-top:40px;
                 margin-bottom:0px;
-                padding-top: 40px;
+                padding-top: 5px;
                 text-align: center;
                 line-height: 20px;
                 padding-bottom:20px;
                 font-color:white;
             }
+
+
 
             .form_container{
                 font-color: white;
@@ -83,18 +84,19 @@
     </nav>
 
 
-    </nav>
 
-<div class="starter-template">
+
 {% extends "base.html" %}
+
 {% block title %}
+<div class="start">
 Enter the resource details below
 {% endblock %}
 {% block content %}
 {% if session.username %}
 <div id="form_container">
     <form action="/form" method="post">
-            <p style="color:white;font-weight: bold;">Name: {{name}} </p>
+            <p style="margin-top:8px;color:white;font-weight: bold;">Name: {{name}} </p>
             <p style="color:white;font-weight: bold;">Location: {{location}} </p>
             <p style="color:white;font-weight: bold;">Resource:
             <select style="color:black;" name="resource" method="GET" action="/form">
@@ -114,7 +116,7 @@ Enter the resource details below
             </select>
             </p>
 
-            <input type="submit" style="background-color: #4CAF50;">
+            <input type="submit" style="margin-bottom:8px;border-color: #4a5d23; background-color: #8a9a5b;">
     </form>
 </div>
 </div>

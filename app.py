@@ -60,10 +60,8 @@ def form():
         else:
             username1 = session.get('username')
             user = needsmap.query.filter_by(username=username1).first()
-            
             if resource == "Food":
                 user.food = int(alert_number)
-                
             elif resource == "Toiletries":
                 user.toilet = int(alert_number)
             elif resource == "Clothes":
@@ -72,10 +70,8 @@ def form():
                 user.shoes = int(alert_number)
             elif resource == "Feminine Supplies":
                 user.femprod = int(alert_number)
-                
             elif resource == "Monetary Donations":
                 user.cash = int(alert_number)
-                
             db.session.commit()
         
         flash("You have successfully submitted the details! Please logout if you don't have any more updates or you can continue updating the form")

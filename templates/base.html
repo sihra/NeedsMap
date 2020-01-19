@@ -30,18 +30,55 @@
                 color:white;
             }
 
+            /*h1{
+               font-family: 'Architects Daughter', cursive;
+               font-color: #1e365c;
+               font-size: 39px;
+               font-weight: bold;
+            }*/
+
             .starter-template {
-                z-index: 1;
+                
                 /* display: none; */
-                position: absolute;
-                top: 20;
+                /*position: absolute;*/
+                margin-top: 120;
+                font-family: 'Architects Daughter', cursive;
                 width: 100%;
                 margin-bottom:0px;
-                padding-top: 40px;
+                padding-top: 60px;
                 text-align: center;
                 line-height: 20px;
-                padding-bottom:20px;
+                padding-bottom:0px;
                 font-color:white;
+                font-size: bold;
+            }
+
+            .container{
+                border-radius: 15px;
+                padding-top: 3px;
+            }
+
+            h1{
+               font-color: #1e365c;
+               font-size: 39px;
+               font-weight: bold;
+            }
+
+            .starter {
+                
+                /* display: none; */
+                /*position: absolute;*/
+                margin-top: 40;
+                
+                font-family: 'Alata', sans-serif;
+                width: 100%;
+                margin-bottom:0px;
+                padding-top: 5px;
+                text-align: center;
+                line-height: 20px;
+                padding-bottom:30px;
+                font-color:white;
+                
             }
 
 
@@ -82,7 +119,12 @@
 
 
     <!-- <a href="/">Home page</a> -->
-    <div class="starter-template">
+    
+<div class="starter-template">
+        <h1>NeedsMap</h1>
+        <img src="https://lh4.googleusercontent.com/N6EYXd7N1YejhJA66m7a3fHxAC1yM_2UF2rCbhYa3W7EO-2NSihi6YB9G01n0pX2xERRgv8-EYFUOAo-RCDYc--ct9d5mwAPeXU8vVsnZghPLPBFwFxE8ndcdPmaIhvztVnsn8Ys" height=150px width=150px>
+</div>
+<div class="starter">
     <h1>{% block title %}{% endblock %}</h1>
     
     {% with messages = get_flashed_messages() %}

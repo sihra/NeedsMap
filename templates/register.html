@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-Register an account
+Shelter Registration
 {% endblock %}
 {% block content %}
 <form action="/register" method="post">
    
-    <p style="color:white; margin-top:8px;" >Username        : <input style="color:black;" type="text" name="username" required></p>
+    <p style="color:white; margin-top:10px;" >Username        : <input style="color:black;" type="text" name="username" required></p>
     <p style="color:white;" >Password        : <input style="color:black;" type="password" name="password" required></p>
     <p style="color:white;" >Shelter Location: <input style="color:black;" type="text" name="location" required></p>
     <p style="color:white;" >Shelter Name    : <input style="color:black;" type="text" name="name" required></p>
 
-    <p><input type="submit" style="background-color: green;"></p>
+    <p><input type="submit" style="font-color:#1e365c;border-color: #4a5d23; background-color: #8a9a5b;"></p>
 {% endblock %}
