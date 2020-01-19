@@ -58,9 +58,24 @@ def form():
            flash('Please select a valid priority number!')
            return redirect(url_for('form'))
         else:
-            username = session.get('username')
-            user = needsmap.query.filter_by(username=username).first()
-            user.resource = int(alert_number)
+            username1 = session.get('username')
+            user = needsmap.query.filter_by(username=username1).first()
+            flash('hiiiii' + resource)
+            if resource == "Food":
+                user.food = int(alert_number)
+                flash(user.food)
+            elif resource == "Toiletries":
+                user.toilet = int(alert_number)
+            elif resource == "Clothes":
+                user.clothing = int(alert_number)
+            elif resource == "Shoes":
+                user.shoes = int(alert_number)
+            elif resource == "Feminine Supplies":
+                user.femprod = int(alert_number)
+                flash(user.femprod)
+            elif resource == "Monetary Donations":
+                user.cash = int(alert_number)
+                flash(user.cash)
             db.session.commit()
         
         flash("You have successfully submitted the details! Please logout if you don't have any more updates or you can continue updating the form")
@@ -76,7 +91,7 @@ def form():
         
         location = user.address_id
         resources = ['--None--','Food', 'Toiletries', 'Clothes', 'Shoes','Feminine Supplies','Monetary Donations']
-        alerts = ['--None--','0','1','2','3','4']
+        alerts = ['--None--','1','2','3']
         return render_template('form.html', name = name,location = location,resources=resources,alerts = alerts)
         
 
@@ -110,7 +125,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('/'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -140,6 +155,10 @@ def register():
     else:
         return render_template('register.html')
 
+"""
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+
 
 #API Key Initialization
 
@@ -148,59 +167,68 @@ app.config['GOOGLEMAPS_KEY'] = "AIzaSyDPQ4t0bcLgc1FByDOrjDZxjQL_yoEly4I"
 # Initialize the extension
 GoogleMaps(app)
 
-#def setMarkers(map):
 
-@app.route('/')
-def index():
+#NeedsMapTable
+def setMarkers():
+    markers = []
+
+    #table = needsmap.query.filter_by(needsmap.address_id!=null)
+    rows = needsmap.query.all()
+
+
+    for col in rows:
+        mark = "<b>" + col.name +"</b> <p>"+col.address_id+ "</p><p>"
+
+        food = chooseIcon(col.food)
+        mark = mark + food+ " Food <br>"
+
+        clothing = chooseIcon(col.clothing)
+        mark = mark + clothing+ " Clothing <br>"
+
+        femprod = chooseIcon(col.femprod)
+        mark = mark + femprod+ " Feminine Products <br>"
+
+        shoes = chooseIcon(col.shoes)
+        mark = mark + shoes+ " Shoes <br>"
+
+        toilet = chooseIcon(col.toilet)
+        mark = mark + toilet + " Toiletries <br>"
+
+        cash = chooseIcon(col.cash)
+        mark = mark + cash+ " Cash <br></p>"
+
+        m1 = {
+             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+             'lat': col.latitude,
+             'lng': col.longitude,
+             'infobox': mark
+        }
+        markers.append(m1)
+    return markers
+
+
+def chooseIcon(val):
+    if(val == 1):
+        return "🔴"
+    elif(val == 2):
+        return "🟡"
+    else:
+        return "🟢"
+
+@app.route("/")
+def mapview():
     # creating a map in the view
     mymap = Map(
         identifier="view-side",
         lat=34.0522,
         lng=-118.2437,
-        style="height:600px;width:75%;margin:0;",
+        style="height:93.5vh;width:100%;margin-top:31px;",
         #Call function to generate markers
-       # markers=[]
+        markers=setMarkers()
     ) 
-    #fromsetMarkers(mymap)
-
-
-    # adding markers to map from database
-    #def addmarker():
-    	#marker={
-    		#if need value is '1', set icon to yellow-dot e.g. icons.dots.yellow: [(x,y)]
-    		#if need value is '2', set icon to orange-dot
-    		#if need value is '3', set icon to red-dot
-
-    		#translate address into lat & lng
-
-    		#set the infobox to: 
-    		#name of shelter (possibly with link to their website OR a link to our page )
-    		#address
-    		#what they need
-
-
-    	#}
-    	#marker.setMap(mymap)
-    sndmap = Map(
-        identifier="sndmap",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-             'lat': 37.4419,
-             'lng': -122.1419,
-             'infobox': "<b>Hello World</b>"
-          },
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-             'lat': 37.4300,
-             'lng': -122.1400,
-             'infobox': "<b>Hello World from other place</b>"
-          }
-        ]
-    )
     return render_template('index.html', mymap=mymap)
-if __name__ == "__main__":
-    app.run(debug=True)
 
+    if __name__ == "__main__":
+        app.run(debug=True)
+
+    

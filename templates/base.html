@@ -4,17 +4,85 @@
     <meta charset="UTF-8">
     <title>NeedsMap</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+     <title>NeedsMap</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <link rel="shortcut icon" href="https://lh4.googleusercontent.com/N6EYXd7N1YejhJA66m7a3fHxAC1yM_2UF2rCbhYa3W7EO-2NSihi6YB9G01n0pX2xERRgv8-EYFUOAo-RCDYc--ct9d5mwAPeXU8vVsnZghPLPBFwFxE8ndcdPmaIhvztVnsn8Ys">
+        <style>
+           @import url('https://fonts.googleapis.com/css?family=Alata|Architects+Daughter|Raleway:800&display=swap');
+
+
+            li, .navbar-brand{
+               font-family: 'Alata', sans-serif;
+                font-size: 16px;
+
+            }
+
+            body{
+               background-color:  #AADAFF; 
+            }
+
+            .container, .navbar-brand, .active, .navbar, .nav, .navbar-nav{
+                background-color: #1e365c;
+                border-color: #1e365c;
+            }
+
+            #name{
+                color:white;
+            }
+
+            .starter-template {
+                z-index: 1;
+                /* display: none; */
+                position: absolute;
+                top: 20;
+                width: 100%;
+                margin-bottom:0px;
+                padding-top: 40px;
+                text-align: center;
+                line-height: 20px;
+                padding-bottom:20px;
+                font-color:white;
+            }
+
+
+
+       </style>
 </head>
 <body>
+
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"> NeedsMap</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            {% if session.username %}
+            
+            <!-- <a href="/favorites">View my favorites</a>  -->
+            <ul class="nav navbar-nav">
+               
+                <li><a href="/">Logout</a></li>
+                 <li><div id="name" style="margin-top:14px;"><span>Logged in as {{ session.username }}</span></div></li>
+
+            </ul>
+            {% else %}
+            <ul>
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+            {% endif %}
+    </div>
+    <!--/.nav-collapse -->
+    </div>
+    </nav>
+
+
     <!-- <a href="/">Home page</a> -->
-    {% if session.username %}
-    <span>Logged in as {{ session.username }}</span>
-    <!-- <a href="/favorites">View my favorites</a>  -->
-    <a href="/logout">Logout</a>
-    {% else %}
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-    {% endif %}
+    <div class="starter-template">
     <h1>{% block title %}{% endblock %}</h1>
     
     {% with messages = get_flashed_messages() %}
@@ -28,5 +96,6 @@
     {% endwith %}
     
     <div class="container">{% block content %}{% endblock %}</div>
+</div>
 </body>
 </html>

@@ -1,35 +1,115 @@
-<!-- <!DOCTYPE html> -->
-<html>
+<!DOCTYPE html>
+    <html>
     <head>
+        <title>NeedsMap</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <link rel="shortcut icon" href="https://lh4.googleusercontent.com/N6EYXd7N1YejhJA66m7a3fHxAC1yM_2UF2rCbhYa3W7EO-2NSihi6YB9G01n0pX2xERRgv8-EYFUOAo-RCDYc--ct9d5mwAPeXU8vVsnZghPLPBFwFxE8ndcdPmaIhvztVnsn8Ys">
+        <style>
+           @import url('https://fonts.googleapis.com/css?family=Alata|Architects+Daughter|Raleway:800&display=swap');
 
-        <!-- <script type=text/javascript> $(function() { $("#register").click(function (event) { $.getJSON('/gotoregister', { },
-            function(data) { }); return false; }); }); 
-        </script>
-        <script type=text/javascript> $(function() { $("#login").click(function (event) { $.getJSON('/gotologin', { },
-            function(data) { }); return false; }); }); 
-        </script>        -->
+           .map{
+                padding-top: 40px;
+                margin-top: 120;
+           }
+
+           .sidenav {
+                font-family: 'Alata', sans-serif;
+                font-size: 15px;
+                font-weight: bold;
+                font-color: white;
+                height: 107px;
+                width: 188px;
+                background: rgba(30,54,92, 0.9);
+                border-radius: 15px;
+                position: fixed;
+                z-index: 1;
+                top: 10;
+                padding: 13px;
+                overflow-x: hidden;
+                margin-top:100px;
+                margin-left: 5px;
+                position: absolute;
+            }
+
+            .num{
+                color: white;
+            }
+ 
+            .starter-template {
+                z-index: 1;
+                /* display: none; */
+                position: absolute;
+                top: 20;
+                width: 100%;
+                margin-bottom:0px;
+                padding-top: 40px;
+                text-align: center;
+                line-height: 20px;
+                padding-bottom:20px;
+            }
+
+            h1{
+               font-family: 'Architects Daughter', cursive;
+               font-color: #1e365c;
+               font-size: 39px;
+               font-weight: bold;
+            }
+
+
+
+            li, .navbar-brand{
+               font-family: 'Alata', sans-serif;
+                font-size: 16px;
+
+            }
+
+            body{
+               background-color:  #AADAFF; 
+            }
+
+            .container, .navbar-brand, .active, .navbar, .nav, .navbar-nav{
+                background-color: #1e365c;
+                border-color: #1e365c;
+            }
+            
+            
+        </style>
+                 
     </head>
     <body>
-        <h1>Flask Google Maps Example</h1>
-        <!-- <div>
-            <form action="/register" method="post" >   
-                <input type="button" id="register" value="Register as a shelter manager" style="float: right;">
-            
+​
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"> NeedsMap</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            </button>
         </div>
-        <div>
-            
-                <input type="button" id="login" value="Login as a shelter manager" style="float: right;">
-           
-        </div> -->
-        <p><a href="{{ url_for('register') }}">Register as a shelter manager</a></p>
-        <p><a href="{{ url_for('login') }}">Login as a shelter manager</a></p>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Log In</a></li>
+            </ul>
+    </div>
+    <!--/.nav-collapse -->
+    </div>
+    </nav>
 
-        <h2> First map generated in view</h2>
-        
-            {{mymap.js}} 
-            {{mymap.html}}
-
-        
-        
+    <div class="sidenav">
+      <p class="num">Immediately Need - 🔴</p>
+      <p class="num">Somewhat Need - 🟡<br></p>
+      <p class="num">Low Need - 🟢</p>
+    </div>
+    
+<div class="starter-template">
+        <h1>NeedsMap</h1>
+        <img src="https://lh4.googleusercontent.com/N6EYXd7N1YejhJA66m7a3fHxAC1yM_2UF2rCbhYa3W7EO-2NSihi6YB9G01n0pX2xERRgv8-EYFUOAo-RCDYc--ct9d5mwAPeXU8vVsnZghPLPBFwFxE8ndcdPmaIhvztVnsn8Ys" height=110px width=110px>
+</div>
+<div id="map">
+        {{mymap.js}} 
+        {{mymap.html}}
+</div>        
+​
     </body>
 </html>
