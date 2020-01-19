@@ -1,13 +1,21 @@
 import os
 
 from flask import Flask, render_template, request, redirect, session, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 # Flask Google Maps
 from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map, icons
+from flask_googlemaps import Map
+
+from flask_sqlalchemy import SQLAlchemy
 
 import requests
 
 app = Flask(__name__, template_folder="templates")
+app.secret_key = os.getenv('SECRET_KEY', 'changeme')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'sqlite:///test.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
 
 #API Key Initialization
 
@@ -16,7 +24,8 @@ app.config['GOOGLEMAPS_KEY'] = "AIzaSyDPQ4t0bcLgc1FByDOrjDZxjQL_yoEly4I"
 # Initialize the extension
 GoogleMaps(app)
 
-def setMarkers(map):
+
+#def setMarkers(map):
 
 
 
@@ -31,7 +40,7 @@ def mapview():
         #Call function to generate markers
        # markers=[]
     ) 
-    setMarkers(mymap)
+    #fromsetMarkers(mymap)
 
 
     # adding markers to map from database
