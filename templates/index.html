@@ -1,20 +1,16 @@
-{% extends "base.html" %}
-{% block title %}
-Random Cat Posters
-{% endblock %}
-{% block content %}
-{% if session.username %}
-<form action="/save-favorite" method="post">
-    <input type="hidden" name="url" value="{{ url }}">
-    <input type="hidden" name="quote" value="{{ quote }}">
-    <button type="submit">Save to favorites</button>
-</form>
-{% endif %}
-<form action="/" method="get">
-    <button type="submit">Get another</button>
-</form>
-<div class="poster">
-    <img class="catpic" src="{{ url }}" alt="Random cat">
-    <div class="quote">{{ quote }}</div>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+    <html>
+    <head>
+
+                 
+    </head>
+    <body>
+        <h1>Flask Google Maps Example</h1>
+
+        <h2> First map generated in view</h2>
+
+         {{mymap.js}} 
+         {{mymap.html}}
+
+    </body>
+</html>
