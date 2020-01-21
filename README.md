@@ -1,7 +1,7 @@
 # Needs Map
 Womxn Hacks 2020
 
-DevPost: https://devpost.com/software/needsmap
+Devpost: https://devpost.com/software/needsmap
 
 
 # Inspiration
